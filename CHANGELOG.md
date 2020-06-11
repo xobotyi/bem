@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/xobotyi/bem/compare/v1.0.0...v1.0.1) (2020-06-11)
+
+
+### Bug Fixes
+
+* silly typo in README.md ([dfa09ae](https://github.com/xobotyi/bem/commit/dfa09ae1d264382d27ce9c7aef4cd04c53914e6e))
+
 # 1.0.0 (2020-06-11)
 
 
