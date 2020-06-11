@@ -10,7 +10,7 @@
     "generator",
     "builder"
   ],
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -19,7 +19,7 @@
   "homepage": "https://github.com/xobotyi/bem",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xobotyi/bem.git"
+    "url": "https://github.com/xobotyi/bem.git"
   },
   "bugs": {
     "url": "hhttps://github.com/xobotyi/bem/issues"
@@ -28,13 +28,15 @@
     "type": "patreon",
     "url": "https://www.patreon.com/xobotyi"
   },
-  "main": "dist/index",
-  "types": "dist/index",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "esnext": "dist/esnext/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "dependencies": {
-    "cnbuilder": "^2.5.0"
+    "cnbuilder": "^2.6.0"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.1",
@@ -56,14 +58,17 @@
   },
   "scripts": {
     "cleanup": "rimraf ./dist",
-    "compile": "tsc",
-    "build": "yarn cleanup && yarn compile",
+    "compile:CJS": "tsc --target ES5 --module CommonJS --outDir dist -d",
+    "compile:ESM": "tsc --target ES5 --module ESNext --outDir dist/esm",
+    "compile:ESNext": "tsc --target ESNext --module ESNext --outDir dist/esnext",
+    "build": "yarn cleanup && yarn compile:CJS && yarn compile:ESM && yarn compile:ESNext",
     "test": "jest --coverage=false",
     "test:coverage": "jest --coverage",
     "benchmark": "cd ./benchmark && yarn && yarn benchmark",
     "lint": "eslint ./{src,tests,benchmark}/**/*.{ts,js} ./*.{ts,js}",
     "lint:fix": "yarn lint --fix",
-    "lint:types": "yarn build --noEmit"
+    "lint:types": "yarn build --noEmit",
+    "semantic-release": "semantic-release"
   },
   "lint-staged": {
     "./{src,tests}/**/*.ts": [

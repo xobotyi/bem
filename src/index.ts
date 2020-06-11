@@ -1,5 +1,4 @@
-import { ClassValue } from 'cnbuilder/dist/types';
-import { cnb } from 'cnbuilder';
+import { ClassValue, cnb } from 'cnbuilder';
 
 export interface IBemOptions {
   prefix: string;
@@ -127,7 +126,9 @@ interface IElementStringifier {
 
 interface IStringifierProps {
   lock(block: string): IBlockStringifier;
+
   lock(block: string, element: string): IElementStringifier;
+
   lock(...args: Parameters<IStringifier>);
 
   extend(options?: Partial<IBemOptions>): IStringifierWithProps;
