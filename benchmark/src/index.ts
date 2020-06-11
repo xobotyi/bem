@@ -1,7 +1,8 @@
 import * as BEMHelper from 'react-bem-helper';
 import { PredicateSet } from 'react-bem-helper';
 import * as b from 'b_';
-import { BEM } from '../..';
+import { BEM as BEMnpm } from '@xobotyi/bem';
+import { BEM as BEMlocal } from '../..';
 import { run } from './run';
 
 const showRef = false;
@@ -30,8 +31,11 @@ run(
         });
       return reactBemHelperInstances.simple({ modifiers: data.modifiers });
     },
-    BEM: (data) => {
-      return BEM(data.block, data.modifiers);
+    'BEM (local)': (data) => {
+      return BEMlocal(data.block, data.modifiers);
+    },
+    'BEM (npm)': (data) => {
+      return BEMnpm(data.block, data.modifiers);
     },
   },
   { showRef },
@@ -59,8 +63,11 @@ run(
         });
       return reactBemHelperInstances.simple({ element: data.element });
     },
-    BEM: (data) => {
-      return BEM(data.block, data.element);
+    'BEM (local)': (data) => {
+      return BEMlocal(data.block, data.element);
+    },
+    'BEM (npm)': (data) => {
+      return BEMnpm(data.block, data.element);
     },
   },
   { showRef },
@@ -87,8 +94,11 @@ run(
         modifiers: (data.modifiers as unknown) as PredicateSet,
       });
     },
-    BEM: (data) => {
-      return BEM(data.block, data.element, data.modifiers);
+    'BEM (local)': (data) => {
+      return BEMlocal(data.block, data.element, data.modifiers);
+    },
+    'BEM (npm)': (data) => {
+      return BEMnpm(data.block, data.element, data.modifiers);
     },
   },
   { showRef },
