@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "scripts": {
+    "cleanup": "rimraf ./dist",
+    "compile": "tsc",
+    "build": "yarn cleanup && yarn compile",
+    "build:browser": "yarn build && browserify ./dist/index.js -o ./browser/bundle.js",
+    "benchmark": "yarn build && node ./dist/index.js"
+  },
+  "dependencies": {
+    "b_": "^1.3.4",
+    "benchmark": "^2.1.4",
+    "react-bem-helper": "^1.4.1"
+  },
+  "devDependencies": {
+    "@types/b_": "^1.3.1",
+    "@types/benchmark": "^1.0.33",
+    "browserify": "^16.5.1",
+    "rimraf": "^3.0.2"
+  }
+}

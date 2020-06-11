@@ -1,8 +1,8 @@
-import { BemHelper, BemBuilder } from '../src';
+import { BEM, BemBuilder } from '../src';
 
-describe('BemHelper', () => {
+describe('BEM', () => {
   it('should be defined', () => {
-    expect(BemHelper).toBeDefined();
+    expect(BEM).toBeDefined();
   });
 
   describe('stringifyModifiers', () => {
@@ -76,19 +76,19 @@ describe('BemHelper', () => {
   });
 
   it('should be callable with call arguments to build block name (1-3 args, 2nd is modifiers)', () => {
-    expect(BemHelper('a')).toBe('a');
-    expect(BemHelper('a', ['b'])).toBe('a a_b');
-    expect(BemHelper('a', ['b'], 'extra')).toBe('a a_b extra');
+    expect(BEM('a')).toBe('a');
+    expect(BEM('a', ['b'])).toBe('a a_b');
+    expect(BEM('a', ['b'], 'extra')).toBe('a a_b extra');
   });
 
   it('should be callable with call arguments to build element name (2-4 args, 3nd is modifiers)', () => {
-    expect(BemHelper('a', 'b')).toBe('a__b');
-    expect(BemHelper('a', 'b', ['c'])).toBe('a__b a__b_c');
-    expect(BemHelper('a', 'b', ['c'], 'extra')).toBe('a__b a__b_c extra');
+    expect(BEM('a', 'b')).toBe('a__b');
+    expect(BEM('a', 'b', ['c'])).toBe('a__b a__b_c');
+    expect(BEM('a', 'b', ['c'], 'extra')).toBe('a__b a__b_c extra');
   });
 
   it('should apply custom delimiters via extension with options object', () => {
-    const b = BemHelper.extend({
+    const b = BEM.extend({
       prefixDelimiter: '--',
       modifierDelimiter: '--',
       elementDelimiter: '--',
@@ -99,7 +99,7 @@ describe('BemHelper', () => {
   });
 
   it('should be extendable multiple times', () => {
-    const b = BemHelper.extend({
+    const b = BEM.extend({
       prefixDelimiter: '--',
       modifierDelimiter: '--',
       elementDelimiter: '--',
@@ -111,12 +111,12 @@ describe('BemHelper', () => {
   });
 
   it('should carry arguments with .lock call', () => {
-    const block = BemHelper.lock('blockName');
+    const block = BEM.lock('blockName');
 
     expect(block()).toBe('blockName');
     expect(block(['a'], 'test')).toBe('blockName blockName_a test');
 
-    const element = BemHelper.lock('blockName', 'element');
+    const element = BEM.lock('blockName', 'element');
 
     expect(element()).toBe('blockName__element');
     expect(element(['a'], 'test')).toBe('blockName__element blockName__element_a test');

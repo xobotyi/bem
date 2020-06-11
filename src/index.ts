@@ -9,7 +9,7 @@ export interface IBemOptions {
   isFullModifier: boolean;
 }
 
-export type IBemHelperModifiers = string[] | ({ [mod: string]: any } | { [mod: number]: any });
+export type IBemModifiers = string[] | ({ [mod: string]: any } | { [mod: number]: any });
 
 const isArr = Array.isArray;
 const hasOwnProp = Object.prototype.hasOwnProperty;
@@ -38,7 +38,7 @@ export class BemBuilder {
     if (typeof options.isFullModifier !== 'undefined') this.options.isFullModifier = options.isFullModifier;
   }
 
-  stringifyModifiers(prefix: string, modifiers: IBemHelperModifiers): string {
+  stringifyModifiers(prefix: string, modifiers: IBemModifiers): string {
     let mod: string;
     let res = '';
 
@@ -72,21 +72,21 @@ export class BemBuilder {
     return res;
   }
 
-  stringify(block: string, modifiers?: IBemHelperModifiers, extra?: ClassValue): string;
+  stringify(block: string, modifiers?: IBemModifiers, extra?: ClassValue): string;
 
-  stringify(block: string, element: string, modifiers?: IBemHelperModifiers, extra?: ClassValue): string;
+  stringify(block: string, element: string, modifiers?: IBemModifiers, extra?: ClassValue): string;
 
   stringify(
     block: string,
-    element?: string | IBemHelperModifiers,
-    modifiers?: IBemHelperModifiers | ClassValue,
+    element?: string | IBemModifiers,
+    modifiers?: IBemModifiers | ClassValue,
     extra?: ClassValue,
   ): string;
 
   stringify(
     block: string,
-    element?: string | IBemHelperModifiers,
-    modifiers?: IBemHelperModifiers | ClassValue,
+    element?: string | IBemModifiers,
+    modifiers?: IBemModifiers | ClassValue,
     extra?: ClassValue,
   ): string {
     let res = `${this.options.prefix && `${this.options.prefix}${this.options.prefixDelimiter}`}${block}`;
@@ -101,7 +101,7 @@ export class BemBuilder {
 
     // build modifiers string and append it
     if (modifiers) {
-      modifiers = this.stringifyModifiers(this.options.isFullModifier ? res : '', modifiers as IBemHelperModifiers);
+      modifiers = this.stringifyModifiers(this.options.isFullModifier ? res : '', modifiers as IBemModifiers);
 
       if (modifiers) res += modifiers;
     }
@@ -113,15 +113,15 @@ export class BemBuilder {
 type IStringifier = typeof BemBuilder.prototype.stringify;
 
 interface IBlockStringifier {
-  (modifiers?: IBemHelperModifiers, extra?: ClassValue): string;
+  (modifiers?: IBemModifiers, extra?: ClassValue): string;
 
-  (element: string, modifiers?: IBemHelperModifiers, extra?: ClassValue): string;
+  (element: string, modifiers?: IBemModifiers, extra?: ClassValue): string;
 
-  (element?: string | IBemHelperModifiers, modifiers?: IBemHelperModifiers | ClassValue, extra?: ClassValue): string;
+  (element?: string | IBemModifiers, modifiers?: IBemModifiers | ClassValue, extra?: ClassValue): string;
 }
 
 interface IElementStringifier {
-  (modifiers?: IBemHelperModifiers, extra?: ClassValue): string;
+  (modifiers?: IBemModifiers, extra?: ClassValue): string;
 }
 
 interface IStringifierProps {
@@ -153,4 +153,4 @@ function createStringifier(options: Partial<IBemOptions> = {}): IStringifierWith
   return fn as IStringifierWithProps;
 }
 
-export const BemHelper = createStringifier();
+export const BEM = createStringifier();

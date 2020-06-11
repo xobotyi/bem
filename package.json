@@ -64,7 +64,7 @@
     "build": "yarn cleanup && yarn compile:CJS && yarn compile:ESM && yarn compile:ESNext",
     "test": "jest --coverage=false",
     "test:coverage": "jest --coverage",
-    "benchmark": "cd ./benchmark && yarn && yarn benchmark",
+    "benchmark": "yarn build && cd ./benchmark && yarn && yarn benchmark",
     "lint": "eslint ./{src,tests,benchmark}/**/*.{ts,js} ./*.{ts,js}",
     "lint:fix": "yarn lint --fix",
     "lint:types": "yarn build --noEmit",
