@@ -1,0 +1,23 @@
+os: linux
+dist: trusty
+
+language: node_js
+node_js: 12
+
+cache:
+  yarn: true
+
+script:
+  - yarn lint
+  - yarn build
+  - yarn test
+
+after_script:
+  - yarn add -D codacy-coverage
+  - cat ./coverage/lcov.info | codacy-coverage
+
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: yarn semantic-release
+

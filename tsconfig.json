@@ -1,0 +1,15 @@
+{
+  "extends": "@xobotyi/preset-typescript/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "sourceMap": false,
+    "resolveJsonModule": false,
+    "target": "ES5",
+    "module": "CommonJS",
+    "moduleResolution": "Node"
+  },
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
+}
