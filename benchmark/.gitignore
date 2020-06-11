@@ -1,2 +1,3 @@
 dist
 browser/bundle.js
+yarn.lock
