@@ -1,26 +1,26 @@
 <div align="center">
-  <h1>@xobotiy/bem</h1>
+  <h1>@xobotyi/bem</h1>
   <p>The fastest BEM class name generator</p>
   <p>
     <a href="https://travis-ci.org/xobotyi/bem">
         <img src="https://flat.badgen.net/travis/xobotyi/bem" alt="Build status"/>
     </a>
-    <a href="https://www.npmjs.com/package/@xobotiy/bem">
-        <img src="https://flat.badgen.net/npm/v/@xobotiy/bem" alt="NPM version"/>
+    <a href="https://www.npmjs.com/package/@xobotyi/bem">
+        <img src="https://flat.badgen.net/npm/v/@xobotyi/bem" alt="NPM version"/>
     </a>
-    <a href="https://www.npmjs.com/package/@xobotiy/bem">
-        <img src="https://flat.badgen.net/npm/dw/@xobotiy/bem" alt="NPM weekly downloads"/>
+    <a href="https://www.npmjs.com/package/@xobotyi/bem">
+        <img src="https://flat.badgen.net/npm/dw/@xobotyi/bem" alt="NPM weekly downloads"/>
     </a>
-    <a href="https://www.npmjs.com/package/@xobotiy/bem">
-        <img src="https://flat.badgen.net/npm/license/@xobotiy/bem" alt="License"/>
+    <a href="https://www.npmjs.com/package/@xobotyi/bem">
+        <img src="https://flat.badgen.net/npm/license/@xobotyi/bem" alt="License"/>
     </a>
-    <a href="https://www.npmjs.com/package/@xobotiy/bem">
-        <img src="https://flat.badgen.net/npm/types/@xobotiy/bem" alt="Types definition"/>
+    <a href="https://www.npmjs.com/package/@xobotyi/bem">
+        <img src="https://flat.badgen.net/npm/types/@xobotyi/bem" alt="Types definition"/>
     </a>
-    <a href="https://www.codacy.com/manual/xobotyi/bem">
+    <a href="https://www.npmjs.com/package/@xobotyi/bem">
         <img src="https://flat.badgen.net/codacy/grade/41452ebba00f442dab5ab31b7be6c9d1" alt="Codacy Code Grade"/>
     </a>
-    <a href="https://www.codacy.com/manual/xobotyi/bem">
+    <a href="https://www.npmjs.com/package/@xobotyi/bem">
         <img src="https://flat.badgen.net/codacy/coverage/41452ebba00f442dab5ab31b7be6c9d1" alt="Tests LOC"/>
     </a>
   </p>
@@ -54,7 +54,7 @@ export function component(){
 into this:
 ```jsx
 import * as react from "react";
-import { BEM } from "@xobotiy/bem";
+import { BEM } from "@xobotyi/bem";
 
 export const B = new BEM({ prefix: 'NTS' });
 const block = b.lock('blockName');
