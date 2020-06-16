@@ -3,25 +3,25 @@
   <p>The fastest BEM class name generator</p>
   <p>
     <a href="https://travis-ci.org/xobotyi/bem">
-        <img src="https://flat.badgen.net/travis/xobotyi/bem" alt="Build status"/>
+        <img src="https://flat.badgen.net/travis/xobotyi/bem?v=1" alt="Build status"/>
     </a>
     <a href="https://www.npmjs.com/package/@xobotyi/bem">
-        <img src="https://flat.badgen.net/npm/v/@xobotyi/bem" alt="NPM version"/>
+        <img src="https://flat.badgen.net/npm/v/@xobotyi/bem?v=1" alt="NPM version"/>
     </a>
     <a href="https://www.npmjs.com/package/@xobotyi/bem">
-        <img src="https://flat.badgen.net/npm/dw/@xobotyi/bem" alt="NPM weekly downloads"/>
+        <img src="https://flat.badgen.net/npm/dw/@xobotyi/bem?v=1" alt="NPM weekly downloads"/>
     </a>
     <a href="https://www.npmjs.com/package/@xobotyi/bem">
-        <img src="https://flat.badgen.net/npm/license/@xobotyi/bem" alt="License"/>
+        <img src="https://flat.badgen.net/npm/license/@xobotyi/bem?v=1" alt="License"/>
     </a>
     <a href="https://www.npmjs.com/package/@xobotyi/bem">
-        <img src="https://flat.badgen.net/npm/types/@xobotyi/bem" alt="Types definition"/>
+        <img src="https://flat.badgen.net/npm/types/@xobotyi/bem?v=1" alt="Types definition"/>
     </a>
     <a href="https://www.npmjs.com/package/@xobotyi/bem">
-        <img src="https://flat.badgen.net/codacy/grade/41452ebba00f442dab5ab31b7be6c9d1" alt="Codacy Code Grade"/>
+        <img src="https://flat.badgen.net/codacy/grade/41452ebba00f442dab5ab31b7be6c9d1?v=1" alt="Codacy Code Grade"/>
     </a>
     <a href="https://www.npmjs.com/package/@xobotyi/bem">
-        <img src="https://flat.badgen.net/codacy/coverage/41452ebba00f442dab5ab31b7be6c9d1" alt="Tests LOC"/>
+        <img src="https://flat.badgen.net/codacy/coverage/41452ebba00f442dab5ab31b7be6c9d1?v=1" alt="Tests LOC"/>
     </a>
   </p>
 </div>
