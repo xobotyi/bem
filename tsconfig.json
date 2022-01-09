@@ -1,17 +1,17 @@
 {
-  "extends": "@xobotyi/preset-typescript/tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist",
-    "target": "ES5",
-    "module": "CommonJS",
+    "strict": true,
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    "module": "ESNext",
     "moduleResolution": "Node",
+    "target": "ESNext",
+    "noEmit": true,
     "sourceMap": false
   },
   "include": [
-    "src"
-  ],
-  "exclude": [
-    "dist",
-    "node_modules"
+    "./src/**/*.ts"
   ]
 }

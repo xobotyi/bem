@@ -1,27 +1,44 @@
 import { ClassValue, cnb } from 'cnbuilder';
 
-export interface IBemOptions {
+export interface BemOptions {
   prefix: string;
+
   prefixDelimiter: string;
   elementDelimiter: string;
   modifierDelimiter: string;
   modifierValueDelimiter: string;
-  isFullModifier: boolean;
+
+  fullModifier: boolean;
 }
 
-export type IBemModifiers = string[] | ({ [mod: string]: any } | { [mod: number]: any });
+export type BemModifiers = (string | number)[] | Record<string | number, any>;
 
+const defaultOptions: BemOptions = {
+  prefixDelimiter: '__',
+  elementDelimiter: '__',
+  modifierDelimiter: '_',
+  modifierValueDelimiter: '-',
+};
 const isArr = Array.isArray;
 const hasOwnProp = Object.prototype.hasOwnProperty;
 
-const DEFAULT_OPTIONS: IBemOptions = {
-  prefix: '',
-  prefixDelimiter: '-',
-  elementDelimiter: '__',
-  modifierDelimiter: '_',
-  modifierValueDelimiter: '_',
-  isFullModifier: true,
-};
+type ElementStringifier = (
+  modifiers?: BemModifiers,
+  extra?: ClassValue
+) => string;
+
+type BlockStringifier =
+  | ((modifiers?: BemModifiers, extra?: ClassValue) => string)
+  | ((element: string, modifiers?: BemModifiers, extra?: ClassValue) => string);
+
+type BEMStringifier =
+  | ((block: string, modifiers?: BemModifiers, extra?: ClassValue) => string)
+  | ((
+      block: string,
+      element: string,
+      modifiers?: BemModifiers,
+      extra?: ClassValue
+    ) => string);
 
 export class BemBuilder {
   readonly options: IBemOptions;
@@ -29,13 +46,18 @@ export class BemBuilder {
   constructor(options: Partial<IBemOptions> = {}) {
     this.options = { ...DEFAULT_OPTIONS };
 
-    if (typeof options.prefix !== 'undefined') this.options.prefix = options.prefix;
-    if (typeof options.prefixDelimiter !== 'undefined') this.options.prefixDelimiter = options.prefixDelimiter;
-    if (typeof options.elementDelimiter !== 'undefined') this.options.elementDelimiter = options.elementDelimiter;
-    if (typeof options.modifierDelimiter !== 'undefined') this.options.modifierDelimiter = options.modifierDelimiter;
+    if (typeof options.prefix !== 'undefined')
+      this.options.prefix = options.prefix;
+    if (typeof options.prefixDelimiter !== 'undefined')
+      this.options.prefixDelimiter = options.prefixDelimiter;
+    if (typeof options.elementDelimiter !== 'undefined')
+      this.options.elementDelimiter = options.elementDelimiter;
+    if (typeof options.modifierDelimiter !== 'undefined')
+      this.options.modifierDelimiter = options.modifierDelimiter;
     if (typeof options.modifierValueDelimiter !== 'undefined')
       this.options.modifierValueDelimiter = options.modifierValueDelimiter;
-    if (typeof options.isFullModifier !== 'undefined') this.options.isFullModifier = options.isFullModifier;
+    if (typeof options.isFullModifier !== 'undefined')
+      this.options.isFullModifier = options.isFullModifier;
   }
 
   stringifyModifiers(prefix: string, modifiers: IBemModifiers): string {
@@ -47,7 +69,8 @@ export class BemBuilder {
         mod = modifiers[i];
 
         // as array entry can be non-string we have to check it
-        if (typeof mod === 'string') res += ` ${prefix}${this.options.modifierDelimiter}${mod}`;
+        if (typeof mod === 'string')
+          res += ` ${prefix}${this.options.modifierDelimiter}${mod}`;
       }
 
       return res;
@@ -58,7 +81,10 @@ export class BemBuilder {
       /* istanbul ignore next */
       if (hasOwnProp.call(modifiers, mod)) {
         // key-value modifiers should be joined with appropriate separator
-        if (typeof modifiers[mod] === 'number' || typeof modifiers[mod] === 'string') {
+        if (
+          typeof modifiers[mod] === 'number' ||
+          typeof modifiers[mod] === 'string'
+        ) {
           // eslint-disable-next-line max-len
           res += ` ${prefix}${this.options.modifierDelimiter}${mod}${this.options.modifierValueDelimiter}${modifiers[mod]}`;
         }
@@ -72,24 +98,36 @@ export class BemBuilder {
     return res;
   }
 
-  stringify(block: string, modifiers?: IBemModifiers, extra?: ClassValue): string;
-
-  stringify(block: string, element: string, modifiers?: IBemModifiers, extra?: ClassValue): string;
+  stringify(
+    block: string,
+    modifiers?: IBemModifiers,
+    extra?: ClassValue
+  ): string;
 
   stringify(
     block: string,
-    element?: string | IBemModifiers,
-    modifiers?: IBemModifiers | ClassValue,
-    extra?: ClassValue,
+    element: string,
+    modifiers?: IBemModifiers,
+    extra?: ClassValue
   ): string;
 
   stringify(
     block: string,
     element?: string | IBemModifiers,
     modifiers?: IBemModifiers | ClassValue,
-    extra?: ClassValue,
+    extra?: ClassValue
+  ): string;
+
+  stringify(
+    block: string,
+    element?: string | IBemModifiers,
+    modifiers?: IBemModifiers | ClassValue,
+    extra?: ClassValue
   ): string {
-    let res = `${this.options.prefix && `${this.options.prefix}${this.options.prefixDelimiter}`}${block}`;
+    let res = `${
+      this.options.prefix &&
+      `${this.options.prefix}${this.options.prefixDelimiter}`
+    }${block}`;
 
     if (typeof element === 'object') {
       extra = modifiers;
@@ -101,7 +139,10 @@ export class BemBuilder {
 
     // build modifiers string and append it
     if (modifiers) {
-      modifiers = this.stringifyModifiers(this.options.isFullModifier ? res : '', modifiers as IBemModifiers);
+      modifiers = this.stringifyModifiers(
+        this.options.isFullModifier ? res : '',
+        modifiers as IBemModifiers
+      );
 
       if (modifiers) res += modifiers;
     }
@@ -117,7 +158,11 @@ interface IBlockStringifier {
 
   (element: string, modifiers?: IBemModifiers, extra?: ClassValue): string;
 
-  (element?: string | IBemModifiers, modifiers?: IBemModifiers | ClassValue, extra?: ClassValue): string;
+  (
+    element?: string | IBemModifiers,
+    modifiers?: IBemModifiers | ClassValue,
+    extra?: ClassValue
+  ): string;
 }
 
 interface IElementStringifier {
@@ -142,13 +187,17 @@ function carry(this: IStringifierWithProps, ...args: Parameters<IStringifier>) {
   return this.bind(this, ...args);
 }
 
-function createStringifier(options: Partial<IBemOptions> = {}): IStringifierWithProps {
+function createStringifier(
+  options: Partial<IBemOptions> = {}
+): IStringifierWithProps {
   const helper: BemBuilder = new BemBuilder(options);
-  const fn: IStringifier & Partial<IStringifierProps> = helper.stringify.bind(helper);
+  const fn: IStringifier & Partial<IStringifierProps> =
+    helper.stringify.bind(helper);
 
   fn.lock = carry;
   // eslint-disable-next-line no-shadow
-  fn.extend = (options: Partial<IBemOptions>) => createStringifier({ ...helper.options, ...options });
+  fn.extend = (options: Partial<IBemOptions>) =>
+    createStringifier({ ...helper.options, ...options });
 
   return fn as IStringifierWithProps;
 }

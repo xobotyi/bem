@@ -20,19 +20,28 @@ describe('BEM', () => {
     it('should return string if modifier is an object', () => {
       const helper = new BemBuilder();
 
-      expect(helper.stringifyModifiers('a', { a: true, b: true })).toBe(' a_a a_b');
+      expect(helper.stringifyModifiers('a', { a: true, b: true })).toBe(
+        ' a_a a_b'
+      );
     });
 
     it('should properly handle key-value modifiers', () => {
       const helper = new BemBuilder();
 
-      expect(helper.stringifyModifiers('a', { is: 'valid', c: 123 })).toBe(' a_is_valid a_c_123');
+      expect(helper.stringifyModifiers('a', { is: 'valid', c: 123 })).toBe(
+        ' a_is_valid a_c_123'
+      );
     });
 
     it('should use custom modifier and modifier value delimiter', () => {
-      const helper = new BemBuilder({ modifierValueDelimiter: '-', modifierDelimiter: '--' });
+      const helper = new BemBuilder({
+        modifierValueDelimiter: '-',
+        modifierDelimiter: '--',
+      });
 
-      expect(helper.stringifyModifiers('a', { is: 'valid', c: 123 })).toBe(' a--is-valid a--c-123');
+      expect(helper.stringifyModifiers('a', { is: 'valid', c: 123 })).toBe(
+        ' a--is-valid a--c-123'
+      );
     });
 
     it('should ignore non-string element in array of modifiers', () => {
@@ -119,6 +128,8 @@ describe('BEM', () => {
     const element = BEM.lock('blockName', 'element');
 
     expect(element()).toBe('blockName__element');
-    expect(element(['a'], 'test')).toBe('blockName__element blockName__element_a test');
+    expect(element(['a'], 'test')).toBe(
+      'blockName__element blockName__element_a test'
+    );
   });
 });

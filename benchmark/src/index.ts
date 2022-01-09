@@ -18,9 +18,7 @@ run(
     },
   ],
   {
-    b_: (data) => {
-      return b(data.block, data.modifiers);
-    },
+    b_: (data) => b(data.block, data.modifiers),
     'react-bem-helper': (data) => {
       reactBemHelperInstances.simple =
         reactBemHelperInstances.simple ||
@@ -31,14 +29,10 @@ run(
         });
       return reactBemHelperInstances.simple({ modifiers: data.modifiers });
     },
-    'BEM (local)': (data) => {
-      return BEMlocal(data.block, data.modifiers);
-    },
-    'BEM (npm)': (data) => {
-      return BEMnpm(data.block, data.modifiers);
-    },
+    'BEM (local)': (data) => BEMlocal(data.block, data.modifiers),
+    'BEM (npm)': (data) => BEMnpm(data.block, data.modifiers),
   },
-  { showRef },
+  { showRef }
 );
 
 run(
@@ -50,9 +44,7 @@ run(
     },
   ],
   {
-    b_: (data) => {
-      return b(data.block, data.element);
-    },
+    b_: (data) => b(data.block, data.element),
     'react-bem-helper': (data) => {
       reactBemHelperInstances.simple =
         reactBemHelperInstances.simple ||
@@ -63,43 +55,41 @@ run(
         });
       return reactBemHelperInstances.simple({ element: data.element });
     },
-    'BEM (local)': (data) => {
-      return BEMlocal(data.block, data.element);
-    },
-    'BEM (npm)': (data) => {
-      return BEMnpm(data.block, data.element);
-    },
+    'BEM (local)': (data) => BEMlocal(data.block, data.element),
+    'BEM (npm)': (data) => BEMnpm(data.block, data.element),
   },
-  { showRef },
+  { showRef }
 );
 
 run(
   [
     {
       name: 'block+element+modifiers',
-      data: { block: 'test', element: 'element', modifiers: { disabled: true, size: 'l' } },
+      data: {
+        block: 'test',
+        element: 'element',
+        modifiers: { disabled: true, size: 'l' },
+      },
       reference: 'test__element test__element_disabled test__element_size_l',
     },
   ],
   {
-    b_: (data) => {
-      return b(data.block, data.element, data.modifiers);
-    },
+    b_: (data) => b(data.block, data.element, data.modifiers),
     'react-bem-helper': (data) => {
       reactBemHelperInstances.modifiers =
         reactBemHelperInstances.modifiers ||
-        new BEMHelper({ name: data.block, modifierDelimiter: '_', outputIsString: true });
+        new BEMHelper({
+          name: data.block,
+          modifierDelimiter: '_',
+          outputIsString: true,
+        });
       return reactBemHelperInstances.modifiers({
         element: data.element,
-        modifiers: (data.modifiers as unknown) as PredicateSet,
+        modifiers: data.modifiers as unknown as PredicateSet,
       });
     },
-    'BEM (local)': (data) => {
-      return BEMlocal(data.block, data.element, data.modifiers);
-    },
-    'BEM (npm)': (data) => {
-      return BEMnpm(data.block, data.element, data.modifiers);
-    },
+    'BEM (local)': (data) => BEMlocal(data.block, data.element, data.modifiers),
+    'BEM (npm)': (data) => BEMnpm(data.block, data.element, data.modifiers),
   },
-  { showRef },
+  { showRef }
 );
