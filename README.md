@@ -30,11 +30,11 @@ import * as react from "react";
 
 export function component(){
   return (
-    <div className="ns-blockName ns-blockName_size_l">
-      <div className="ns-blockName__wrapperElement">
-        <div className="ns-blockName__headerElement ns-blockName__headerElement_size_l">Block title</div>
-        <button className="ns-blockName__buttonElement ns-blockName__buttonElement_left ns-blockName__buttonElement_size_l ns-blockName__buttonElement_disabled">Button left</button>
-        <button className="ns-blockName__buttonElement ns-blockName__buttonElement_right ns-blockName__buttonElement_size_l">Button right</button>
+    <div className="ns__blockName ns__blockName_size-l">
+      <div className="ns__blockName__wrapperElement">
+        <div className="ns__blockName__headerElement ns__blockName__headerElement_size-l">Block title</div>
+        <button className="ns__blockName__buttonElement ns__blockName__buttonElement_left ns__blockName__buttonElement_size-l ns__blockName__buttonElement_disabled">Button left</button>
+        <button className="ns__blockName__buttonElement ns__blockName__buttonElement_right ns__blockName__buttonElement_size-l">Button right</button>
       </div>
     </div>
   );
