@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/xobotyi/bem/compare/v2.0.0...v2.0.1) (2022-01-10)
+
+
+### Bug Fixes
+
+* remove useless code and fix coverage ([2f5d2bc](https://github.com/xobotyi/bem/commit/2f5d2bcbdd0868fdddd0224580c46dc028eeac9f))
+
 # [2.0.0](https://github.com/xobotyi/bem/compare/v1.0.2...v2.0.0) (2022-01-10)
 
 
