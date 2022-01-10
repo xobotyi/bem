@@ -9,7 +9,7 @@
     "name",
     "builder"
   ],
-  "version": "2.0.2",
+  "version": "2.0.3",
   "license": "MIT",
   "author": "Anton Zinovyev <xog3@yandex.ru>",
   "homepage": "https://github.com/xobotyi/bem",

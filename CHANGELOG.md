@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/xobotyi/bem/compare/v2.0.2...v2.0.3) (2022-01-10)
+
+
+### Bug Fixes
+
+* performance and packaging improvements ([d202794](https://github.com/xobotyi/bem/commit/d202794fc97964b94f03c19eceb30d617fe81c56))
+
 ## [2.0.2](https://github.com/xobotyi/bem/compare/v2.0.1...v2.0.2) (2022-01-10)
 
 
