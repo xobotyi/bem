@@ -58,6 +58,24 @@ const addModifiersAndExtra = (
   return typeof extra !== 'undefined' ? cnb(prefix, extra) : prefix;
 };
 
+const stringify = (
+  o: BEMOptions,
+  prefix: string,
+  element?: string | BEMModifiers,
+  modifiers?: BEMModifiers | ClassValue,
+  extra?: ClassValue
+) => {
+  if (typeof element === 'object') {
+    extra = modifiers;
+    modifiers = element;
+    element = undefined;
+  }
+
+  if (typeof element !== 'undefined') prefix += `${o.elementDelimiter}${element}`;
+
+  return addModifiersAndExtra(o, prefix, modifiers as BEMModifiers, extra);
+};
+
 type ElementStringifier = (modifiers?: BEMModifiers, extra?: ClassValue) => string;
 
 const createElementStringifier = (o: BEMOptions, prefix: string): ElementStringifier =>
@@ -76,19 +94,7 @@ const createBlockStringifier = (o: BEMOptions, prefix: string): BlockStringifier
     element?: string | BEMModifiers,
     modifiers?: BEMModifiers | ClassValue,
     extra?: ClassValue
-  ) => {
-    let res = prefix;
-
-    if (typeof element === 'object') {
-      extra = modifiers;
-      modifiers = element;
-      element = undefined;
-    }
-
-    if (typeof element !== 'undefined') res += `${o.elementDelimiter}${element}`;
-
-    return addModifiersAndExtra(o, res, modifiers as BEMModifiers, extra);
-  }) as any;
+  ) => stringify(o, prefix, element, modifiers, extra)) as any;
 
   stringifier.lock = (element: string) =>
     createElementStringifier(o, `${prefix}${o.elementDelimiter}${element}`);
@@ -116,19 +122,7 @@ const createBEMStringifier = (o: BEMOptions, prefix: string): BEMStringifier => 
     element?: string | BEMModifiers,
     modifiers?: BEMModifiers | ClassValue,
     extra?: ClassValue
-  ) => {
-    let res = prefix + block;
-
-    if (typeof element === 'object') {
-      extra = modifiers;
-      modifiers = element;
-      element = undefined;
-    }
-
-    if (typeof element !== 'undefined') res += `${o.elementDelimiter}${element}`;
-
-    return addModifiersAndExtra(o, res, modifiers as BEMModifiers, extra);
-  }) as any;
+  ) => stringify(o, prefix + block, element, modifiers, extra)) as any;
 
   stringifier.lock = (block: string, element?: string) => {
     if (typeof element === 'undefined') {
