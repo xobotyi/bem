@@ -38,26 +38,6 @@ const defaultOptions: BEMOptions = {
   fullModifier: true,
 };
 
-const addModifiersAndExtra = (
-  o: BEMOptions,
-  prefix: string,
-  modifiers?: BEMModifiers,
-  extra?: ClassValue
-): string => {
-  if (typeof modifiers !== 'undefined') {
-    const m = buildModifiers(
-      modifiers,
-      o.fullModifier ? prefix : '',
-      o.modifierDelimiter,
-      o.modifierValueDelimiter
-    );
-
-    if (m) prefix += m;
-  }
-
-  return typeof extra !== 'undefined' ? cnb(prefix, extra) : prefix;
-};
-
 const stringify = (
   o: BEMOptions,
   prefix: string,
@@ -71,15 +51,26 @@ const stringify = (
     element = undefined;
   }
 
-  if (typeof element !== 'undefined') prefix += `${o.elementDelimiter}${element}`;
+  if (typeof element !== 'undefined') prefix += o.elementDelimiter + element;
 
-  return addModifiersAndExtra(o, prefix, modifiers as BEMModifiers, extra);
+  if (typeof modifiers !== 'undefined') {
+    prefix += buildModifiers(
+      modifiers as BEMModifiers,
+      o.fullModifier ? prefix : '',
+      o.modifierDelimiter,
+      o.modifierValueDelimiter
+    );
+  }
+
+  return typeof extra !== 'undefined' ? cnb(prefix, extra) : prefix;
 };
 
 type ElementStringifier = (modifiers?: BEMModifiers, extra?: ClassValue) => string;
 
-const createElementStringifier = (o: BEMOptions, prefix: string): ElementStringifier =>
-  addModifiersAndExtra.bind(undefined, o, prefix);
+const createElementStringifier =
+  (o: BEMOptions, prefix: string): ElementStringifier =>
+  (modifiers, extra) =>
+    stringify(o, prefix, modifiers, extra);
 
 interface BlockStringifier {
   (modifiers?: BEMModifiers, extra?: ClassValue): string;
@@ -97,7 +88,7 @@ const createBlockStringifier = (o: BEMOptions, prefix: string): BlockStringifier
   ) => stringify(o, prefix, element, modifiers, extra)) as any;
 
   stringifier.lock = (element: string) =>
-    createElementStringifier(o, `${prefix}${o.elementDelimiter}${element}`);
+    createElementStringifier(o, prefix + o.elementDelimiter + element);
 
   return stringifier;
 };
@@ -126,10 +117,10 @@ const createBEMStringifier = (o: BEMOptions, prefix: string): BEMStringifier => 
 
   stringifier.lock = (block: string, element?: string) => {
     if (typeof element === 'undefined') {
-      return createBlockStringifier(o, `${prefix}${block}`);
+      return createBlockStringifier(o, prefix + block);
     }
 
-    return createElementStringifier(o, `${prefix}${block}${o.elementDelimiter}${element}`) as any;
+    return createElementStringifier(o, prefix + block + o.elementDelimiter + element) as any;
   };
 
   stringifier.extend = (options) => {
@@ -137,7 +128,7 @@ const createBEMStringifier = (o: BEMOptions, prefix: string): BEMStringifier => 
     // eslint-disable-next-line @typescript-eslint/no-shadow
     let prefix = '';
 
-    if (newO.prefix) prefix += `${newO.prefix}${newO.prefixDelimiter}`;
+    if (newO.prefix) prefix += newO.prefix + newO.prefixDelimiter;
 
     return createBEMStringifier(newO, prefix);
   };

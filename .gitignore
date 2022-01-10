@@ -1,4 +1,6 @@
-.idea
+/.idea
 node_modules
-coverage
-dist
+/coverage
+/cjs
+/esm
+/esnext

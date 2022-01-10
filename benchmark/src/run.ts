@@ -5,7 +5,9 @@ const outputFn =
     ? // eslint-disable-next-line no-console
       console.log
     : (text: string) => {
-        document.body.innerHTML += `${text.replace('\n', '<br/>')}<br/>`;
+        queueMicrotask(() => {
+          document.body.innerHTML += `${text.replace('\n', '<br/>')}<br/>`;
+        });
       };
 
 export function run<T, R = any>(
