@@ -1,9 +1,9 @@
 const isArr = Array.isArray;
 
-export type BemModifiers = Array<string | number> | Record<string | number, any>;
+export type BEMModifiers = Array<string | number> | Record<string | number, any>;
 
 export function buildModifiers(
-  modifiers: BemModifiers,
+  modifiers: BEMModifiers,
   prefix: string,
   delimiter: string,
   valueDelimiter: string
@@ -37,11 +37,7 @@ export function buildModifiers(
   // eslint-disable-next-line guard-for-in,no-restricted-syntax
   for (k in modifiers) {
     v = modifiers[k];
-    if (typeof v === 'string') {
-      if (v) {
-        res += ` ${prefix}${delimiter}${k}${valueDelimiter}${v}`;
-      }
-    } else if (typeof v === 'number') {
+    if (typeof v === 'string' || typeof v === 'number') {
       res += ` ${prefix}${delimiter}${k}${valueDelimiter}${v}`;
     } else if (v) {
       res += ` ${prefix}${delimiter}${k}`;

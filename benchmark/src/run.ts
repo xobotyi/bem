@@ -4,7 +4,7 @@ const outputFn =
   typeof document === 'undefined'
     ? // eslint-disable-next-line no-console
       console.log
-    : (text) => {
+    : (text: string) => {
         document.body.innerHTML += `${text.replace('\n', '<br/>')}<br/>`;
       };
 
@@ -17,22 +17,18 @@ export function run<T, R = any>(
     const suite = new Suite(test.name, {
       onStart: () => {
         outputFn(
-          `\n# ${test.name}${
-            test.reference && showRef ? ` [reference: '${test.reference}']` : ''
-          }`
+          `\n# ${test.name}${test.reference && showRef ? ` [reference: '${test.reference}']` : ''}`
         );
       },
-      onCycle: (ev) => {
+      onCycle: (ev: any) => {
         outputFn(
           `  ${String(ev.target)} ${
             test.reference && showRef ? `[${ev.target.fn(test.data)}]` : ''
           }`
         );
       },
-      onComplete: (ev) => {
-        outputFn(
-          ` Fastest is ${ev.currentTarget.filter('fastest').map('name')}`
-        );
+      onComplete: (ev: any) => {
+        outputFn(` Fastest is ${ev.currentTarget.filter('fastest').map('name')}`);
       },
     });
 

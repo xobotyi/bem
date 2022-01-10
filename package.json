@@ -21,7 +21,7 @@
     "url": "https://github.com/xobotyi/bem.git"
   },
   "bugs": {
-    "url": "hhttps://github.com/xobotyi/bem/issues"
+    "url": "https://github.com/xobotyi/bem/issues"
   },
   "funding": {
     "type": "patreon",
@@ -52,7 +52,7 @@
   },
   "scripts": {
     "test": "jest",
-    "test:coverage": "test --coverage",
+    "test:coverage": "yarn test --coverage",
     "lint": "eslint ./ --ext ts,js",
     "lint:fix": "yarn lint --fix"
   }

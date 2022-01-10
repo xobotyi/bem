@@ -1,29 +1,17 @@
 <div align="center">
-  <h1>@xobotyi/bem</h1>
-  <p>The fastest BEM class name generator</p>
-  <p>
-    <a href="https://travis-ci.org/xobotyi/bem">
-        <img src="https://flat.badgen.net/travis/xobotyi/bem?v=1" alt="Build status"/>
-    </a>
-    <a href="https://www.npmjs.com/package/@xobotyi/bem">
-        <img src="https://flat.badgen.net/npm/v/@xobotyi/bem?v=1" alt="NPM version"/>
-    </a>
-    <a href="https://www.npmjs.com/package/@xobotyi/bem">
-        <img src="https://flat.badgen.net/npm/dw/@xobotyi/bem?v=1" alt="NPM weekly downloads"/>
-    </a>
-    <a href="https://www.npmjs.com/package/@xobotyi/bem">
-        <img src="https://flat.badgen.net/npm/license/@xobotyi/bem?v=1" alt="License"/>
-    </a>
-    <a href="https://www.npmjs.com/package/@xobotyi/bem">
-        <img src="https://flat.badgen.net/npm/types/@xobotyi/bem?v=1" alt="Types definition"/>
-    </a>
-    <a href="https://www.npmjs.com/package/@xobotyi/bem">
-        <img src="https://flat.badgen.net/codacy/grade/41452ebba00f442dab5ab31b7be6c9d1?v=1" alt="Codacy Code Grade"/>
-    </a>
-    <a href="https://www.npmjs.com/package/@xobotyi/bem">
-        <img src="https://flat.badgen.net/codacy/coverage/41452ebba00f442dab5ab31b7be6c9d1?v=1" alt="Tests LOC"/>
-    </a>
-  </p>
+
+# @xobotyi/bem
+
+The fastest BEM class name generator
+
+[![NPM Version](https://flat.badgen.net/npm/v/@xobotyi/bem)](https://www.npmjs.com/package/@xobotyi/bem)
+[![NPM Downloads](https://flat.badgen.net/npm/dm/@xobotyi/bem)](https://www.npmjs.com/package/@xobotyi/bem)
+[![NPM Dependents](https://flat.badgen.net/npm/dependents/@xobotyi/bem)](https://www.npmjs.com/package/@xobotyi/bem)
+[![Build](https://img.shields.io/github/workflow/status/xobotyi/bem/CI?style=flat-square)](https://github.com/xobotyi/bem/actions)
+[![Coverage](https://flat.badgen.net/codecov/c/github/xobotyi/bem)](https://app.codecov.io/gh/xobotyi/bem)
+[![Types](https://flat.badgen.net/npm/types/@xobotyi/bem)](https://www.npmjs.com/package/@xobotyi/bem)
+[![Tree Shaking](https://flat.badgen.net/bundlephobia/tree-shaking/@xobotyi/bem)](https://bundlephobia.com/result?p=@xobotyi/bem)
+
 </div>
 
 ---
@@ -32,8 +20,8 @@
 
 ---
 
-As handwriting BEM-compatible class names is quite painful and existing couple of packages are slow or lack of 
-functionality needed for me (such as prefixing) &mdash; this package exists.  
+As handwriting BEM-compatible class names is quite painful and existing couple of packages are slow or lack of
+functionality needed for me (such as prefixing) &mdash; this package exists.
 Also as figures this package the [fastest](/benchmark) one I know about🚀
 
 And turns this:
@@ -57,7 +45,7 @@ into this:
 import * as react from "react";
 import { BEM } from "@xobotyi/bem";
 
-const bem = BEM.extend({prefix: "MY"}); // in real world this row will be a single per project 
+const bem = BEM.extend({prefix: "MY"}); // in real world this row will be a single per project
                                         // and initialized elsewhere
 const b = bem.lock('blockName');
 
@@ -84,7 +72,7 @@ This package written in TypeScript and delivered with 3 versions:
 - `esnext` field is pointing to the ESNext version with ES modules resolution;
 
 Depending on your targets you may have to use [Webpack](https://webpack.js.org/) and/or
-[Babel](http://babeljs.io/) to pull untranspiled version of package.  
+[Babel](http://babeljs.io/) to pull untranspiled version of package.
 See some tips on wiring thing up: [https://2ality.com/2017/06/pkg-esnext.html](https://2ality.com/2017/06/pkg-esnext.html)
 
 
