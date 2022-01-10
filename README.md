@@ -1,29 +1,17 @@
 <div align="center">
-  <h1>@xobotyi/bem</h1>
-  <p>The fastest BEM class name generator</p>
-  <p>
-    <a href="https://travis-ci.org/xobotyi/bem">
-        <img src="https://flat.badgen.net/travis/xobotyi/bem?v=1" alt="Build status"/>
-    </a>
-    <a href="https://www.npmjs.com/package/@xobotyi/bem">
-        <img src="https://flat.badgen.net/npm/v/@xobotyi/bem?v=1" alt="NPM version"/>
-    </a>
-    <a href="https://www.npmjs.com/package/@xobotyi/bem">
-        <img src="https://flat.badgen.net/npm/dw/@xobotyi/bem?v=1" alt="NPM weekly downloads"/>
-    </a>
-    <a href="https://www.npmjs.com/package/@xobotyi/bem">
-        <img src="https://flat.badgen.net/npm/license/@xobotyi/bem?v=1" alt="License"/>
-    </a>
-    <a href="https://www.npmjs.com/package/@xobotyi/bem">
-        <img src="https://flat.badgen.net/npm/types/@xobotyi/bem?v=1" alt="Types definition"/>
-    </a>
-    <a href="https://www.npmjs.com/package/@xobotyi/bem">
-        <img src="https://flat.badgen.net/codacy/grade/41452ebba00f442dab5ab31b7be6c9d1?v=1" alt="Codacy Code Grade"/>
-    </a>
-    <a href="https://www.npmjs.com/package/@xobotyi/bem">
-        <img src="https://flat.badgen.net/codacy/coverage/41452ebba00f442dab5ab31b7be6c9d1?v=1" alt="Tests LOC"/>
-    </a>
-  </p>
+
+# @xobotyi/bem
+
+The fastest BEM class name generator
+
+[![NPM Version](https://flat.badgen.net/npm/v/@xobotyi/bem)](https://www.npmjs.com/package/@xobotyi/bem)
+[![NPM Downloads](https://flat.badgen.net/npm/dm/@xobotyi/bem)](https://www.npmjs.com/package/@xobotyi/bem)
+[![NPM Dependents](https://flat.badgen.net/npm/dependents/@xobotyi/bem)](https://www.npmjs.com/package/@xobotyi/bem)
+[![Build](https://img.shields.io/github/workflow/status/xobotyi/bem/CI?style=flat-square)](https://github.com/xobotyi/bem/actions)
+[![Coverage](https://flat.badgen.net/codecov/c/github/xobotyi/bem)](https://app.codecov.io/gh/xobotyi/bem)
+[![Types](https://flat.badgen.net/npm/types/@xobotyi/bem)](https://www.npmjs.com/package/@xobotyi/bem)
+[![Tree Shaking](https://flat.badgen.net/bundlephobia/tree-shaking/@xobotyi/bem)](https://bundlephobia.com/result?p=@xobotyi/bem)
+
 </div>
 
 ---
@@ -32,8 +20,8 @@
 
 ---
 
-As handwriting BEM-compatible class names is quite painful and existing couple of packages are slow or lack of 
-functionality needed for me (such as prefixing) &mdash; this package exists.  
+As handwriting BEM-compatible class names is quite painful and existing couple of packages are slow or lack of
+functionality needed for me (such as prefixing) &mdash; this package exists.
 Also as figures this package the [fastest](/benchmark) one I know about🚀
 
 And turns this:
@@ -42,11 +30,11 @@ import * as react from "react";
 
 export function component(){
   return (
-    <div className="NTS-blockName NTS-blockName_size_l">
-      <div className="NTS-blockName__wrapperElement">
-        <div className="NTS-blockName__headerElement NTS-blockName__headerElement_size_l">Block title</div>
-        <button className="NTS-blockName__buttonElement NTS-blockName__buttonElement_left NTS-blockName__buttonElement_size_l NTS-blockName__buttonElement_disabled">Button left</button>
-        <button className="NTS-blockName__buttonElement NTS-blockName__buttonElement_right NTS-blockName__buttonElement_size_l">Button right</button>
+    <div className="ns-blockName ns-blockName_size_l">
+      <div className="ns-blockName__wrapperElement">
+        <div className="ns-blockName__headerElement ns-blockName__headerElement_size_l">Block title</div>
+        <button className="ns-blockName__buttonElement ns-blockName__buttonElement_left ns-blockName__buttonElement_size_l ns-blockName__buttonElement_disabled">Button left</button>
+        <button className="ns-blockName__buttonElement ns-blockName__buttonElement_right ns-blockName__buttonElement_size_l">Button right</button>
       </div>
     </div>
   );
@@ -57,7 +45,7 @@ into this:
 import * as react from "react";
 import { BEM } from "@xobotyi/bem";
 
-const bem = BEM.extend({prefix: "MY"}); // in real world this row will be a single per project 
+const bem = BEM.extend({prefix: "MY"}); // in real world this row will be a single per project
                                         // and initialized elsewhere
 const b = bem.lock('blockName');
 
@@ -84,7 +72,7 @@ This package written in TypeScript and delivered with 3 versions:
 - `esnext` field is pointing to the ESNext version with ES modules resolution;
 
 Depending on your targets you may have to use [Webpack](https://webpack.js.org/) and/or
-[Babel](http://babeljs.io/) to pull untranspiled version of package.  
+[Babel](http://babeljs.io/) to pull untranspiled version of package.
 See some tips on wiring thing up: [https://2ality.com/2017/06/pkg-esnext.html](https://2ality.com/2017/06/pkg-esnext.html)
 
 
@@ -116,7 +104,7 @@ const myBem = BEM.extend({
   elementDelimiter: '-',
   modifierDelimiter: '_',
   modifierValueDelimiter: '_',
-  isFullModifier: false,
+  fullModifier: false,
 });
 
 // blocks
@@ -128,9 +116,8 @@ myBem('block', { size: 'large', disabled: true }); // PFX__block _size_large _di
 BEM('block', 'element', { size: 'large' }); // PFX__block-element _size_large
 ```
 
-##### Currying
-Currying is an approach from functional programming that allow to lock function parameter for easier future use.
-It is very convenient for react users.
+##### Block and Element baking
+In order to improve performance it is possible to `bake-in` block and element name
 ```typescript jsx
 import * as react from "react";
 import { BEM } from "@xobotyi/bem";

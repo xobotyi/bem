@@ -18,7 +18,6 @@
 - [ ] Ensure the test suite passes (`yarn test`)
 - [ ] Try to provide 100% tests coverage
 - [ ] Make sure code lints (`yarn lint`). Fix it with `yarn lint:fix` in case of failure.
-- [ ] Make sure types are fine (`yarn lint:types`).
 
-<!-- If you can't check all the checkboxes right now - check what you can, create a Draft PR, make some changes 
+<!-- If you can't check all the checkboxes right now - check what you can, create a Draft PR, make some changes
 if needed and get back to it when you will be able to put some marks in list. -->

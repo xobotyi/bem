@@ -3,18 +3,14 @@
   "description": "The fastest BEM class name generator",
   "keywords": [
     "bem",
-    "bevis",
     "classname",
+    "generator",
     "class",
     "name",
-    "generator",
     "builder"
   ],
   "version": "1.0.2",
   "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
   "author": "Anton Zinovyev <xog3@yandex.ru>",
   "homepage": "https://github.com/xobotyi/bem",
   "repository": {
@@ -22,86 +18,84 @@
     "url": "https://github.com/xobotyi/bem.git"
   },
   "bugs": {
-    "url": "hhttps://github.com/xobotyi/bem/issues"
+    "url": "https://github.com/xobotyi/bem/issues"
   },
   "funding": {
     "type": "patreon",
     "url": "https://www.patreon.com/xobotyi"
   },
-  "main": "dist/index.js",
-  "module": "dist/esm/index.js",
-  "esnext": "dist/esnext/index.js",
-  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
-    "dist"
+    "cjs",
+    "esm",
+    "esnext"
   ],
+  "main": "cjs/index.js",
+  "types": "cjs/index.d.ts",
+  "esnext": "esnext/index.js",
+  "module": "esm/index.js",
+  "sideEffects": false,
   "dependencies": {
-    "cnbuilder": "^2.6.0"
+    "cnbuilder": "^3.1.0"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^5.0.1",
-    "@semantic-release/git": "^9.0.0",
-    "@semantic-release/npm": "^7.0.5",
-    "@types/jest": "^26.0.0",
-    "@xobotyi/eslint-config": "^1.9.0",
-    "@xobotyi/preset-typescript": "^1.0.0",
-    "eslint": "^7.2.0",
-    "husky": "^4.2.5",
-    "jest": "^26.0.1",
-    "lint-staged": "^10.2.9",
-    "prettier": "^2.0.5",
+    "@commitlint/cli": "^16.0.2",
+    "@commitlint/config-conventional": "^16.0.0",
+    "@commitlint/cz-commitlint": "^16.0.0",
+    "@jamesacarr/eslint-formatter-github-actions": "^0.1.0",
+    "@jamesacarr/jest-reporter-github-actions": "^0.0.4",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^8.0.2",
+    "@semantic-release/npm": "^8.0.3",
+    "@types/jest": "^27.4.0",
+    "@xobotyi/eslint-config": "^2.3.0",
+    "commitizen": "^4.2.4",
+    "commitlint": "^16.0.2",
+    "concurrently": "^7.0.0",
+    "eslint": "^8.6.0",
+    "husky": "^7.0.4",
+    "jest": "^27.4.7",
+    "lint-staged": "^12.1.7",
+    "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
-    "semantic-release": "^17.0.8",
-    "ts-jest": "^26.1.0",
-    "typescript": "^3.9.5",
-    "yarn": "^1.22.4"
+    "semantic-release": "^18.0.1",
+    "ts-jest": "^27.1.2",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4",
+    "yarn": "^1.22.17"
   },
   "scripts": {
-    "cleanup": "rimraf ./dist",
-    "compile:CJS": "tsc --target ES5 --module CommonJS --outDir dist -d",
-    "compile:ESM": "tsc --target ES5 --module ESNext --outDir dist/esm",
-    "compile:ESNext": "tsc --target ESNext --module ESNext --outDir dist/esnext",
-    "build": "yarn cleanup && yarn compile:CJS && yarn compile:ESM && yarn compile:ESNext",
-    "test": "jest --coverage=false",
-    "test:coverage": "jest --coverage",
-    "benchmark": "yarn build && cd ./benchmark && yarn && yarn benchmark",
-    "lint": "eslint ./{src,tests,benchmark}/**/*.{ts,js} ./*.{ts,js}",
-    "lint:fix": "yarn lint --fix",
-    "lint:types": "yarn build --noEmit",
-    "semantic-release": "semantic-release"
+    "prepare": "husky install",
+    "commit": "git-cz",
+    "build": "yarn build:cleanup && concurrently yarn:build:cjs yarn:build:esm yarn:build:esnext --kill-others-on-fail",
+    "build:cleanup": "rimraf ./cjs ./esm ./esnext ./types",
+    "build:cjs": "tsc -p ./tsconfig.build.json --module CommonJS --target ES5 --outDir ./cjs",
+    "build:esm": "tsc -p ./tsconfig.build.json --module ES6 --target ES5 --outDir ./esm",
+    "build:esnext": "tsc -p ./tsconfig.build.json --module ESNext --target ESNext --outDir ./esnext",
+    "test": "jest",
+    "test:coverage": "yarn test --coverage",
+    "lint": "eslint ./ --ext ts,js",
+    "lint:fix": "yarn lint --fix"
   },
-  "lint-staged": {
-    "./{src,tests}/**/*.ts": [
-      "yarn lint:fix"
-    ],
-    "./*.{ts,js}": [
-      "yarn lint:fix"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint:types && lint-staged",
-      "pre-push": "yarn lint:fix && yarn build && yarn test"
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
     }
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,md,mdx}": "eslint --fix"
+  },
   "release": {
-    "branches": [
-      "master",
-      {
-        "name": "next",
-        "prerelease": "rc"
-      }
-    ],
-    "verifyConditions": [
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
       "@semantic-release/npm",
       "@semantic-release/git",
       "@semantic-release/github"
-    ],
-    "prepare": [
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      "@semantic-release/git"
     ]
   }
 }
