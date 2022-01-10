@@ -1,3 +1,13 @@
+# [2.0.0](https://github.com/xobotyi/bem/compare/v1.0.2...v2.0.0) (2022-01-10)
+
+
+* Refactoring (#15) ([dbde3b0](https://github.com/xobotyi/bem/commit/dbde3b011b885a1a4ae559713a02c98b8564f40b)), closes [#15](https://github.com/xobotyi/bem/issues/15)
+
+
+### BREAKING CHANGES
+
+* default delimitiers, option names and package behaviour has changed, revision docs for actualisation.
+
 ## [1.0.2](https://github.com/xobotyi/bem/compare/v1.0.1...v1.0.2) (2020-06-11)
 
 
