@@ -30,11 +30,11 @@ import * as react from "react";
 
 export function component(){
   return (
-    <div className="NTS-blockName NTS-blockName_size_l">
-      <div className="NTS-blockName__wrapperElement">
-        <div className="NTS-blockName__headerElement NTS-blockName__headerElement_size_l">Block title</div>
-        <button className="NTS-blockName__buttonElement NTS-blockName__buttonElement_left NTS-blockName__buttonElement_size_l NTS-blockName__buttonElement_disabled">Button left</button>
-        <button className="NTS-blockName__buttonElement NTS-blockName__buttonElement_right NTS-blockName__buttonElement_size_l">Button right</button>
+    <div className="ns-blockName ns-blockName_size_l">
+      <div className="ns-blockName__wrapperElement">
+        <div className="ns-blockName__headerElement ns-blockName__headerElement_size_l">Block title</div>
+        <button className="ns-blockName__buttonElement ns-blockName__buttonElement_left ns-blockName__buttonElement_size_l ns-blockName__buttonElement_disabled">Button left</button>
+        <button className="ns-blockName__buttonElement ns-blockName__buttonElement_right ns-blockName__buttonElement_size_l">Button right</button>
       </div>
     </div>
   );
@@ -104,7 +104,7 @@ const myBem = BEM.extend({
   elementDelimiter: '-',
   modifierDelimiter: '_',
   modifierValueDelimiter: '_',
-  isFullModifier: false,
+  fullModifier: false,
 });
 
 // blocks
@@ -116,9 +116,8 @@ myBem('block', { size: 'large', disabled: true }); // PFX__block _size_large _di
 BEM('block', 'element', { size: 'large' }); // PFX__block-element _size_large
 ```
 
-##### Currying
-Currying is an approach from functional programming that allow to lock function parameter for easier future use.
-It is very convenient for react users.
+##### Block and Element baking
+In order to improve performance it is possible to `bake-in` block and element name
 ```typescript jsx
 import * as react from "react";
 import { BEM } from "@xobotyi/bem";
