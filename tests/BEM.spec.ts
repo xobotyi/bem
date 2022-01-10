@@ -38,6 +38,13 @@ describe('BEM', () => {
     );
   });
 
+  it('should properly apply modifiers in case of non-full specification', () => {
+    const b = BEM.extend({ fullModifier: false });
+
+    expect(b('block', ['foo'])).toBe('block _foo');
+    expect(b('block', 'element', ['foo'])).toBe('block__element _foo');
+  });
+
   describe('baked block', () => {
     it('should properly bake in block name', () => {
       const b = BEM.extend({ prefix: 'ns' });

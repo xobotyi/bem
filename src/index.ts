@@ -151,24 +151,4 @@ const createBEMStringifier = (o: BEMOptions, prefix: string): BEMStringifier => 
   return stringifier;
 };
 
-const constructBEM = (
-  o: BEMOptions,
-  bakedBlock?: string,
-  bakedElement?: string
-): BEMStringifier | BlockStringifier | ElementStringifier => {
-  let prefix = '';
-
-  if (o.prefix) prefix += `${o.prefix}${o.prefixDelimiter}`;
-
-  if (typeof bakedElement !== 'undefined') {
-    return createElementStringifier(o, `${prefix}${o.elementDelimiter}${bakedElement}`);
-  }
-
-  if (typeof bakedBlock !== 'undefined') {
-    return createBlockStringifier(o, `${prefix}${bakedBlock}`);
-  }
-
-  return createBEMStringifier(o, prefix);
-};
-
-export const BEM = constructBEM(defaultOptions) as BEMStringifier;
+export const BEM = createBEMStringifier(defaultOptions, '');
