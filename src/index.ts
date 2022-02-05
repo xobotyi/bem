@@ -45,7 +45,7 @@ const stringify = (
   modifiers?: BEMModifiers | ClassValue,
   extra?: ClassValue
 ) => {
-  if (typeof element === 'object') {
+  if (typeof element !== 'string') {
     extra = modifiers;
     modifiers = element;
     element = undefined;
@@ -116,7 +116,7 @@ const createBEMStringifier = (o: BEMOptions, prefix: string): BEMStringifier => 
   ) => stringify(o, prefix + block, element, modifiers, extra)) as any;
 
   stringifier.lock = (block: string, element?: string) => {
-    if (typeof element === 'undefined') {
+    if (typeof element !== 'string') {
       return createBlockStringifier(o, prefix + block);
     }
 
