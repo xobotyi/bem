@@ -1,3 +1,10 @@
+## [2.0.4](https://github.com/xobotyi/bem/compare/v2.0.3...v2.0.4) (2022-02-06)
+
+
+### Bug Fixes
+
+* proper handling of missing element name specifier ([203269e](https://github.com/xobotyi/bem/commit/203269ed059b9e601d07fe5d5ed5e69421dd5ce8))
+
 ## [2.0.3](https://github.com/xobotyi/bem/compare/v2.0.2...v2.0.3) (2022-01-10)
 
 
