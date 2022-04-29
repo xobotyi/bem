@@ -53,7 +53,7 @@
     "@types/jest": "^27.4.1",
     "@xobotyi/eslint-config": "^2.3.0",
     "commitizen": "^4.2.4",
-    "commitlint": "^16.2.3",
+    "commitlint": "^16.2.4",
     "concurrently": "^7.1.0",
     "eslint": "^8.14.0",
     "husky": "^7.0.4",
