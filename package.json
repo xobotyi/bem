@@ -41,7 +41,7 @@
     "cnbuilder": "^3.1.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.0.2",
+    "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.2",
     "@commitlint/cz-commitlint": "^17.0.0",
     "@jamesacarr/eslint-formatter-github-actions": "^0.1.0",
