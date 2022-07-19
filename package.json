@@ -54,7 +54,7 @@
     "@xobotyi/eslint-config": "^2.3.0",
     "commitizen": "^4.2.5",
     "commitlint": "^17.0.3",
-    "concurrently": "^7.2.2",
+    "concurrently": "^7.3.0",
     "eslint": "^8.20.0",
     "husky": "^8.0.1",
     "jest": "^27.5.1",
