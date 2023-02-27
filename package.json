@@ -55,7 +55,7 @@
     "commitizen": "^4.3.0",
     "commitlint": "^17.4.4",
     "concurrently": "^7.6.0",
-    "eslint": "^8.34.0",
+    "eslint": "^8.35.0",
     "husky": "^8.0.3",
     "jest": "^27.5.1",
     "lint-staged": "^13.1.2",
